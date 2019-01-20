@@ -1,0 +1,23 @@
+{
+  "name": "campus_buddy_admin_server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/prashant13b/campus-buddy_admin.git"
+  },
+  "author": "Prashant Bhardwaj",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/prashant13b/campus-buddy_admin/issues"
+  },
+  "homepage": "https://github.com/prashant13b/campus-buddy_admin#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  }
+}
