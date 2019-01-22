@@ -1,12 +1,16 @@
+let json = {}
 
 $(document).ready(function () {
     
-    var config = {
+
+
+    const config = {
         apiKey: "AIzaSyB1KU4uBhahk89s_B8D2oydmKa23994B8c",
         authDomain: "campusbuddy-dd715.firebaseapp.com",
         databaseURL: "https://campusbuddy-dd715.firebaseio.com/",
         projectId: "campusbuddy-dd715"
       };
+
     firebase.initializeApp(config);
 
       $('#noticeSubmit').click(function() {
@@ -32,6 +36,45 @@ $(document).ready(function () {
                 date: $('#date').val()
             });
           })
+
+          $('#openSubmitAttendance').click(function() {
+        
+            let list = ""
+
+            Object.keys(json).forEach(key => {
+              
+                list += `<div class="field"><label class="control checkbox">
+                <input name="attend" value="${key}" type="checkbox">
+            ${key}
+              </label>
+              </div>`
+            })
+    
+            $('#attendanceList').html(list)
+            $('.modal').addClass('is-active')
+    
+        })
+
+        $('.closeAttendance').click(function() {
+            $('.modal').removeClass('is-active')
+        })
+        $('#submitAttendance').click(function(){
+            [...document.querySelectorAll('input[name="attend"]:checked')]
+   .forEach((cb) => {
+       console.log(`attendance/${$('#dropBranch').val().toUpperCase()}/${$('#dropSem').val()}/${$('#dropSub').val()}/${cb.value}`);
+       
+    firebase.database().ref(`attendance/${$('#dropBranch').val().toUpperCase()}/${$('#dropSem').val()}/${$('#dropSub').val()}/${cb.value}`).transaction(function(value){
+        return( value || 1) +1
+    })
+   })
+   firebase.database().ref(`attendance/${$('#dropBranch').val().toUpperCase()}/${$('#dropSem').val()}/${$('#dropSub').val()}/total`).transaction(function(value){
+    console.log(value);
+      
+    return( value || 1) +1
+    
+   })
+        })
+      
 
 });
 
@@ -61,6 +104,7 @@ let subjectsCse = {
 }
 
 let changeBranch = value => {
+    
     if(value === "it" || value === "cse"){
         let options= `<option value="" disabled selected>Select</option>`
         semesters.forEach((element,index)  => {
@@ -82,4 +126,18 @@ let changeSem = value => {
      options += `<option value="${element}">${element}</option>`
  })
  $("#dropSub").html(options);
+}
+
+let changeSubAttendance = value => {
+    let subject = value
+    let branch = $('#dropBranch').val()
+    let sem = $('#dropSem').val()       
+    $.getJSON(`./data/studentData/${branch}/${sem}.json`,data => {
+        json = data
+        $('#openSubmitAttendance').removeAttr('disabled')        
+    })
+   
+        
+   
+
 }

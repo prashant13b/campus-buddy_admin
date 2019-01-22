@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Campus Buddy</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script
-    src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Campus Buddy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
-    <script src="main.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-database.js"></script>
+  <script src="main.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-database.js"></script>
 </head>
+
 <body>
-        <div class="container">
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-                <div class="navbar-brand">
-                        <a class="navbar-item">
-                                <strong>Campus Buddy</strong>
-                              </a>
-                </div>
-              
-                <!-- <div id="navbarBasicExample" class="navbar-menu">
+  <div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item">
+          <strong>Campus Buddy</strong>
+        </a>
+      </div>
+
+      <!-- <div id="navbarBasicExample" class="navbar-menu">
                   <div class="navbar-start">
                     <a class="navbar-item">
                       Home
@@ -48,130 +48,127 @@
                   </div>
 
                 </div> -->
-              </nav>
+    </nav>
+  </div>
+
+
+
+
+  <section class="hero is-link">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column">
+            <p class="title">
+              New Assignment
+            </p>
+            <!-- <p class="subtitle">
+                          Everything you need to start with Bulma-extensions.
+                        </p> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-foot">
+      <div class="container">
+        <nav class="tabs is-boxed">
+          <ul>
+            <li class="is-active">
+              <a href="./index.html">Attendance</a>
+            </li>
+            <li>
+              <a href="./assignment.html">Assignment</a>
+            </li>
+            <li>
+              <a href="./notice.html">Notice</a>
+            </li>
+            <li>
+              <a href="./test.html">Test</a>
+            </li>
+
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+  </section>
+
+
+
+  <div class="container">
+
+    <div class="hero">
+      <div class="hero-body">
+
+
+
+        <div class="field">
+          <label class="label">Select Branch</label>
+          <div class="control">
+            <div class="select">
+              <select id="dropBranch" onchange="changeBranch(this.value)">
+                <option value="" disabled selected>Select</option>
+                <option value="it">IT</option>
+                <option value="cse">CSE</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Select Semester</label>
+          <div class="control">
+            <div class="select">
+              <select id="dropSem" onchange="changeSem(this.value)">
+                <option value="" disabled selected>Select</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Select Subject</label>
+          <div class="control">
+            <div class="select">
+              <select id="dropSub" onchange="changeSubAttendance(this.value)">
+                <option value="" disabled selected>Select</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="control"> <button id="openSubmitAttendance" class="button is-success" disabled>Submit Attendance</button>
+          </div>
+        </div>
+
+        <div class="modal">
+          <div class="modal-background"></div>
+          <div class="modal-card">
+            <header class="modal-card-head">
+              <p class="modal-card-title">Attendance Manager</p>
+              <button  class="delete closeAttendance" aria-label="close"></button>
+            </header>
+            <section id="attendanceList" class="modal-card-body">
+
+
+
+            </section>
+            <footer class="modal-card-foot">
+              <button id="submitAttendance" class="button is-success">Submit Attendance</button>
+              <button class="button closeAttendance">Cancel</button>
+            </footer>
+          </div>
         </div>
 
 
-       
-                 
-        <section class="hero is-link">
-                <div class="hero-body">
-                  <div class="container">
-                    <div class="columns is-vcentered">
-                      <div class="column">
-                        <p class="title">
-                         New Assignment
-                        </p>
-                        <!-- <p class="subtitle">
-                          Everything you need to start with Bulma-extensions.
-                        </p> -->
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              
-                <div class="hero-foot">
-                  <div class="container">
-                    <nav class="tabs is-boxed">
-                      <ul>
-                        <li class="is-active">
-                          <a href="./index.html">Assignment</a>
-                        </li>
-                        <li >
-                          <a href="./notice.html">Notice</a>
-                        </li>
-                        <li >
-                          <a href="./test.html">Test</a>
-                        </li>
-                      </ul>
-                      </nav>
-                    </div>
-                  </div>
-                
-              </section>
-                              
 
-
-              <div class="container">
-                    
-                    <div class="hero">
-                            <div class="hero-body">
-       
-                          
-                   
-                          <div class="field">
-                            <label class="label">Select Branch</label>
-                            <div class="control">
-                              <div class="select">
-                                <select id="dropBranch" onchange="changeBranch(this.value)">
-                                <option value="" disabled selected>Select</option>
-                                  <option value="it">IT</option>
-                                  <option value="cse">CSE</option>
-                                </select>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="field">
-                                <label class="label">Select Semester</label>
-                                <div class="control">
-                                  <div class="select">
-                                    <select id="dropSem" onchange="changeSem(this.value)">
-                                    <option value="" disabled selected>Select</option>
-                                    </select>
-                                  </div>
-                                </div>
-                              </div>
-                          
-                              <div class="field">
-                                    <label class="label">Select Subject</label>
-                                    <div class="control">
-                                      <div class="select">
-                                        <select id="dropSub">
-                                        <option value="" disabled selected>Select</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                  </div>
-
-                          <div class="field">
-                            <label class="label">Assignment</label>
-                            <div class="control">
-                              <textarea id="assignDetail" class="textarea" placeholder="Assignment Details"></textarea>
-                            </div>
-                          </div>
-                          
-
-                          <div class="field">
-                                <label class="label">Submission Date</label>
-                                <div class="control">
-                                        <input id="date" class="input" type="date" placeholder="Text input">
-                                </div>
-                              </div>
-
-
-
-                          <div class="field">
-                            <div class="control">
-                              <label class="checkbox">
-                                <input type="checkbox">
-                               Confirm
-                              </label>
-                            </div>
-                          </div>
-                          
-                          
-                          <div class="field is-grouped">
-                            <div class="control">
-                              <button id="assignSubmit" class="button is-link">Submit</button>
-                            </div>
-        
-                          </div>
-
-                          </div>
-                        </div>
-                  </div>
+      </div>
+    </div>
+  </div>
 
 
 </body>
+
 </html>
