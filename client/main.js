@@ -51,6 +51,14 @@ $(document).ready(function () {
         });
     })
 
+    $('.navbar-burger').click(function () {
+        if( $('.navbar-menu').hasClass('is-active')){
+            $('.navbar-menu').removeClass('is-active')
+        }
+        else
+        $('.navbar-menu').addClass('is-active')
+    })
+
     $('#testSubmit').click(function () {
         let $this = $(this)
         $this.addClass("is-loading")

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase-database.js"></script>
+
+</head>
+<body>
+
+
+        <div class="container">
+                <nav class="navbar" role="navigation" aria-label="main navigation">
+                  <div class="navbar-brand">
+                    <a href="../../index.html" class="navbar-item">
+                      <strong>Campus Buddy</strong>
+                    </a>
+                  </div>
+            
+                  <!-- <div id="navbarBasicExample" class="navbar-menu">
+                              <div class="navbar-start">
+                                <a class="navbar-item">
+                                  Home
+                                </a>
+            
+                              </div>
+                          
+            
+                            </div> -->
+                </nav>
+              </div>
+
+        <div class="container has-background-grey-light">
+                    
+                <div class="hero">
+                        <div class="hero-body">
+   
+                      
+               
+                      <div class="field">
+                        <label class="label">Select Branch</label>
+                        <div class="control">
+                          <div class="select">
+                            <select id="dropBranch" onchange="changeBranch(this.value)">
+                            <option value="" disabled selected>Select</option>
+                              <option value="it">IT</option>
+                              <option value="cse">CSE</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="field">
+                            <label class="label">Select Semester</label>
+                            <div class="control">
+                              <div class="select">
+                                <select id="dropSem" onchange="changeSem(this.value)">
+                                <option value="" disabled selected>Select</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                      
+
+                          <div class="field">
+                                <label class="label">Select Subject</label>
+                                <div class="control">
+                                  <div class="select">
+                                    <select id="dropSub" onchange="changeSubAttendance(this.value)">
+                                      <option value="" disabled selected>Select</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+
+                      </div>
+                    </div>
+              </div>
+
+
+              <div class="container">
+                    
+                    <div class="hero has-background-grey-light">
+                            <div class="hero-body">
+       
+                          
+                   
+                          <ul id="assignmentList">
+                            
+                            <div class="columns">
+
+                            </div>
+
+
+                          </ul>
+    
+                          </ul>
+                        </div>
+                  </div>
+
+                  <div class="modal">
+                        <div class="modal-background"></div>
+                        <div class="modal-card">
+                          <header class="modal-card-head">
+                            <p class="modal-card-title">Enter Roll No </p>
+                            <button  class="delete closeAttendance" aria-label="close"></button>
+                          </header>
+                                <input id="rollNo" type="text"/>
+                          <footer class="modal-card-foot">
+                            <button id="submitRollNo" class="button is-success">Submit</button>
+                            <button class="button closeAttendance">Cancel</button>
+                          </footer>
+                        </div>
+                      </div>
+
+    
+</body>
+</html>
