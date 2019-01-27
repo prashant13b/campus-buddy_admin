@@ -65,7 +65,8 @@ $(document).ready(function () {
         firebase.database().ref(`test/${$('#dropBranch').val().toUpperCase()}/${$('#dropSem').val()}`).push({
             subject: $('#dropSub').val(),
             testDetails: $('#testDetails').val(),
-            date: $('#date').val()
+            date: $('#date').val(),
+            done: false
         },error => {
             if (error) {
                 alert(error)
@@ -99,20 +100,20 @@ $(document).ready(function () {
         $('.modal').removeClass('is-active')
     })
     $('#submitAttendance').click(function () {
+
         let $this = $(this)
         $this.addClass("is-loading");
         [...document.querySelectorAll('input[name="attend"]:checked')]
         .forEach((cb) => {
-            console.log(`attendance/${$('#dropBranch').val().toUpperCase()}/${$('#dropSem').val()}/${$('#dropSub').val()}/${cb.value}`);
 
             firebase.database().ref(`attendance/${$('#dropBranch').val().toUpperCase()}/${$('#dropSem').val()}/${$('#dropSub').val()}/${cb.value}`)
                 .transaction(function (value) {
-                    return (value || 1) + 1
+                    return (value || 0) + 1
                 })
         })
         firebase.database().ref(`attendance/${$('#dropBranch').val().toUpperCase()}/${$('#dropSem').val()}/${$('#dropSub').val()}/total`)
             .transaction(function (value) {
-                return (value || 1) + 1
+                return (value || 0) + 1
             },error => {
                 if (error) {
                     alert(error)
